@@ -19,7 +19,7 @@ var dark_streak = Color("c8323232")
 var last_card: int
 var this_card: int
 var rng = RandomNumberGenerator.new()
-onready var card_shown = $CardPiles/Card
+onready var card_shown = $VBoxContainer/CardPiles/Card
 var card1 = preload("res://Assets/card1.png")
 var card2 = preload("res://Assets/card2.png")
 var card3 = preload("res://Assets/card3.png")
@@ -32,7 +32,9 @@ var player_ready = false
 onready var right_sound = $CorrectSound
 onready var wrong_sound = $WrongSound
 onready var ding_sound = $CountSound
-
+# Countdown timer
+onready var countdown = $Countdown
+onready var count_label = $Countdown/ColorRect/Label
 
 func _ready():
 	#default_pos = card_shown.rect_position
@@ -40,8 +42,25 @@ func _ready():
 	# Initialize random card
 	this_card = rng.randi_range(1,5)
 	_show_card(this_card)
-	# Short pause before starting
-	yield(get_tree().create_timer(3),"timeout")
+	# Short pause before starting, display countdown timer
+	count_label.text = "3"
+	countdown.popup()
+	yield(get_tree().create_timer(.9),"timeout")
+	ding_sound.play()
+	countdown.hide()
+	yield(get_tree().create_timer(.1),"timeout")
+	count_label.text = "2"
+	countdown.popup()
+	yield(get_tree().create_timer(.9),"timeout")
+	ding_sound.play()
+	countdown.hide()
+	yield(get_tree().create_timer(.1),"timeout")
+	count_label.text = "1"
+	countdown.popup()
+	yield(get_tree().create_timer(.9),"timeout")
+	ding_sound.play()
+	countdown.hide()
+	yield(get_tree().create_timer(.1),"timeout")
 	timer.start(45)
 	_change_card()
 	
@@ -85,7 +104,7 @@ func _change_card():
 	# Set the new card underneath
 	_show_card(this_card)
 	# Add old card as child of new card
-	$CardPiles/Card.add_child(card_stack)
+	$VBoxContainer/CardPiles/Card.add_child(card_stack)
 	# tween last card away
 	var tween = create_tween()
 	yield(tween.tween_property(card_stack,"rect_position",-Vector2(96,0),.15),"finished")
