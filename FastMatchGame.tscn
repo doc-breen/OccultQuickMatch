@@ -1,0 +1,430 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Assets/CorrectSound.wav" type="AudioStream" id=1]
+[ext_resource path="res://Assets/yesbutton.png" type="Texture" id=2]
+[ext_resource path="res://Assets/WrongSound.wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/blankcard.png" type="Texture" id=4]
+[ext_resource path="res://Hack_Regular.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://FastMatchGame.gd" type="Script" id=6]
+[ext_resource path="res://Assets/nobutton.png" type="Texture" id=7]
+[ext_resource path="res://Assets/CountSound.wav" type="AudioStream" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 14
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=2]
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 14
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=3]
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.184314, 0.258824, 0.333333, 0.901961 )
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.184314, 0.258824, 0.333333, 0.901961 )
+corner_radius_top_left = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.352941, 0, 0.403922, 1 )
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="DynamicFont" id=4]
+size = 30
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 18
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxFlat" id=13]
+bg_color = Color( 0.294118, 0.415686, 0.384314, 1 )
+
+[sub_resource type="StyleBoxFlat" id=12]
+bg_color = Color( 0.180392, 0.34902, 0.415686, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Environment" id=8]
+ambient_light_color = Color( 0, 0.392157, 0.188235, 1 )
+ambient_light_energy = 2.22
+ambient_light_sky_contribution = 0.8
+fog_sun_amount = 0.3
+glow_enabled = true
+glow_intensity = 1.5
+glow_bloom = 0.09
+glow_hdr_threshold = 0.9
+glow_hdr_luminance_cap = 10.0
+glow_hdr_scale = 3.0
+
+[node name="FastMatchGame" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 6 )
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.282353, 0.290196, 0.396078, 1 )
+
+[node name="HUD" type="HBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -360.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 256, 0 )
+alignment = 2
+
+[node name="Time" type="ColorRect" parent="HUD"]
+margin_right = 120.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 120, 0 )
+color = Color( 0.764706, 0.862745, 0.858824, 0.960784 )
+
+[node name="Fixed" type="Label" parent="HUD/Time"]
+anchor_bottom = 1.0
+margin_right = 56.0
+rect_min_size = Vector2( 40, 16 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Time:"
+valign = 1
+
+[node name="Dynamic" type="Label" parent="HUD/Time"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -40.0
+rect_min_size = Vector2( 40, 0 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 9 )
+text = "time"
+align = 2
+valign = 1
+
+[node name="ColorRect" type="ColorRect" parent="HUD/Time"]
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -60.0
+margin_top = -16.0
+margin_right = 61.0
+margin_bottom = 17.0
+color = Color( 0.0470588, 0.0470588, 0.0470588, 0.654902 )
+
+[node name="Score" type="ColorRect" parent="HUD"]
+margin_left = 124.0
+margin_right = 244.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 120, 0 )
+color = Color( 0.764706, 0.862745, 0.858824, 0.960784 )
+
+[node name="Fixed" type="Label" parent="HUD/Score"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -16.0
+margin_right = 60.0
+margin_bottom = 16.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Score:"
+valign = 1
+
+[node name="Dynamic" type="Label" parent="HUD/Score"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -60.0
+margin_top = -16.0
+margin_bottom = 16.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 10 )
+text = "points"
+align = 2
+valign = 1
+
+[node name="ColorRect2" type="ColorRect" parent="HUD/Score"]
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -60.0
+margin_top = -16.0
+margin_right = 61.0
+margin_bottom = 17.0
+color = Color( 0.0470588, 0.0470588, 0.0470588, 0.654902 )
+
+[node name="Streak" type="ColorRect" parent="HUD"]
+margin_left = 248.0
+margin_right = 360.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 112, 0 )
+color = Color( 0.764706, 0.862745, 0.858824, 0.960784 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Streak"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+
+[node name="Counters" type="HBoxContainer" parent="HUD/Streak/VBoxContainer"]
+margin_top = 6.0
+margin_right = 112.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 0, 16 )
+custom_constants/separation = 3
+alignment = 1
+
+[node name="Streak1" type="ColorRect" parent="HUD/Streak/VBoxContainer/Counters"]
+margin_left = 4.0
+margin_right = 20.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 16, 16 )
+color = Color( 0.0980392, 0.0980392, 0.0980392, 0.784314 )
+
+[node name="Streak2" type="ColorRect" parent="HUD/Streak/VBoxContainer/Counters"]
+margin_left = 23.0
+margin_right = 39.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 16, 16 )
+color = Color( 0.0980392, 0.0980392, 0.0980392, 0.784314 )
+
+[node name="Streak3" type="ColorRect" parent="HUD/Streak/VBoxContainer/Counters"]
+margin_left = 42.0
+margin_right = 58.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 16, 16 )
+color = Color( 0.0980392, 0.0980392, 0.0980392, 0.784314 )
+
+[node name="Streak4" type="ColorRect" parent="HUD/Streak/VBoxContainer/Counters"]
+margin_left = 61.0
+margin_right = 77.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 16, 16 )
+color = Color( 0.0980392, 0.0980392, 0.0980392, 0.784314 )
+
+[node name="ColorRect" type="ColorRect" parent="HUD/Streak/VBoxContainer/Counters"]
+margin_left = 80.0
+margin_right = 84.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 4, 16 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="Dynamic" type="Label" parent="HUD/Streak/VBoxContainer/Counters"]
+margin_left = 87.0
+margin_right = 107.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 0, 16 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "x1"
+align = 2
+valign = 1
+
+[node name="ColorRect3" type="ColorRect" parent="HUD/Streak"]
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -56.0
+margin_top = -16.0
+margin_right = 57.0
+margin_bottom = 17.0
+color = Color( 0.0470588, 0.0470588, 0.0470588, 0.654902 )
+
+[node name="CardPiles" type="HBoxContainer" parent="."]
+modulate = Color( 1.5, 1.1, 1.1, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -192.0
+margin_top = -72.0
+margin_right = 192.0
+margin_bottom = 72.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="CardBack" type="TextureRect" parent="CardPiles"]
+modulate = Color( 0.0784314, 0.14902, 0.380392, 1 )
+margin_left = 46.0
+margin_right = 182.0
+margin_bottom = 144.0
+rect_min_size = Vector2( 136, 136 )
+texture = ExtResource( 4 )
+expand = true
+
+[node name="Shadow" type="TextureRect" parent="CardPiles/CardBack"]
+self_modulate = Color( 0.0352941, 0.0352941, 0.0352941, 0.807843 )
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -63.0
+margin_top = -70.0
+margin_right = 71.0
+margin_bottom = 75.0
+texture = ExtResource( 4 )
+expand = true
+
+[node name="Card" type="TextureRect" parent="CardPiles"]
+margin_left = 202.0
+margin_right = 338.0
+margin_bottom = 144.0
+rect_min_size = Vector2( 136, 136 )
+texture = ExtResource( 4 )
+expand = true
+
+[node name="Shadow2" type="TextureRect" parent="CardPiles/Card"]
+self_modulate = Color( 0.0352941, 0.0352941, 0.0352941, 0.72549 )
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -63.0
+margin_top = -70.0
+margin_right = 71.0
+margin_bottom = 75.0
+texture = ExtResource( 4 )
+expand = true
+
+[node name="UI" type="HBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -20.0
+margin_top = -40.0
+margin_right = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 128, 0 )
+custom_constants/separation = 8
+alignment = 1
+
+[node name="NoButton" type="Button" parent="UI"]
+margin_right = 64.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 64, 40 )
+custom_styles/normal = SubResource( 6 )
+icon = ExtResource( 7 )
+align = 0
+expand_icon = true
+
+[node name="YesButton" type="Button" parent="UI"]
+margin_left = 72.0
+margin_right = 136.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 64, 40 )
+custom_styles/normal = SubResource( 7 )
+icon = ExtResource( 2 )
+align = 2
+icon_align = 2
+expand_icon = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 45.0
+one_shot = true
+
+[node name="PopupDialog" type="PopupDialog" parent="."]
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -159.0
+margin_top = -89.0
+margin_right = 161.0
+margin_bottom = 86.0
+custom_styles/panel = SubResource( 5 )
+popup_exclusive = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupDialog"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -87.5
+margin_right = 160.0
+margin_bottom = 87.5
+alignment = 1
+
+[node name="Label" type="Label" parent="PopupDialog/VBoxContainer"]
+margin_top = 33.0
+margin_right = 320.0
+margin_bottom = 69.0
+custom_fonts/font = SubResource( 4 )
+text = "Time's Up!"
+align = 1
+valign = 1
+
+[node name="ColorRect" type="ColorRect" parent="PopupDialog/VBoxContainer"]
+margin_top = 73.0
+margin_right = 320.0
+margin_bottom = 105.0
+rect_min_size = Vector2( 0, 32 )
+color = Color( 1, 1, 1, 0 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PopupDialog/VBoxContainer"]
+margin_top = 109.0
+margin_right = 320.0
+margin_bottom = 141.0
+alignment = 1
+
+[node name="RestartButton" type="Button" parent="PopupDialog/VBoxContainer/HBoxContainer"]
+margin_left = 116.0
+margin_right = 204.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 88, 32 )
+custom_fonts/font = SubResource( 11 )
+custom_styles/hover = SubResource( 13 )
+custom_styles/normal = SubResource( 12 )
+text = "Restart"
+expand_icon = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 8 )
+
+[node name="CorrectSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+
+[node name="CountSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+
+[node name="WrongSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[connection signal="pressed" from="UI/NoButton" to="." method="_on_NoButton_pressed"]
+[connection signal="pressed" from="UI/YesButton" to="." method="_on_YesButton_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="pressed" from="PopupDialog/VBoxContainer/HBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
