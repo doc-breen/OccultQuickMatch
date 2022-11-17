@@ -1,5 +1,5 @@
 # OccultQuickMatch
-My second finished game project
+My second finished game project, another web game made with Control nodes
 
 All assets other than font made by me.
 
