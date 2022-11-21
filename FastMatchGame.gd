@@ -14,7 +14,7 @@ onready var streak_2 = $HUD/Streak/VBoxContainer/Counters/Streak2
 onready var streak_3 = $HUD/Streak/VBoxContainer/Counters/Streak3
 onready var streak_4 = $HUD/Streak/VBoxContainer/Counters/Streak4
 var light_streak = Color("3ba656")
-var dark_streak = Color("c8323232")
+var dark_streak = Color("de323232")
 # Remember last card and display new one
 var last_card: int
 var this_card: int
@@ -34,7 +34,7 @@ onready var wrong_sound = $WrongSound
 onready var ding_sound = $CountSound
 # Countdown timer
 onready var countdown = $Countdown
-onready var count_label = $Countdown/ColorRect/Label
+onready var count_label = $Countdown/Label
 
 func _ready():
 	#default_pos = card_shown.rect_position
@@ -60,10 +60,10 @@ func _ready():
 	yield(get_tree().create_timer(.9),"timeout")
 	ding_sound.play()
 	countdown.hide()
-	yield(get_tree().create_timer(.1),"timeout")
-	timer.start(45)
+	yield(get_tree().create_timer(.2),"timeout")
 	_change_card()
 	
+	timer.start(45)
 
 func _input(event):
 	if player_ready and !event.is_echo():
@@ -138,13 +138,13 @@ func _up_score():
 	# Light up a streak counter
 	match streak:
 		1:
-			streak_1.color = light_streak
+			streak_1.self_modulate = light_streak
 		2:
-			streak_2.color = light_streak
+			streak_2.self_modulate = light_streak
 		3:
-			streak_3.color = light_streak
+			streak_3.self_modulate = light_streak
 		4:
-			streak_4.color = light_streak
+			streak_4.self_modulate = light_streak
 		5:
 			streak = 0
 			_clear_streaks()
@@ -157,10 +157,10 @@ func _up_score():
 	score += 50*mult
 
 func _clear_streaks():
-	streak_1.color = dark_streak
-	streak_2.color = dark_streak
-	streak_3.color = dark_streak
-	streak_4.color = dark_streak
+	streak_1.self_modulate = dark_streak
+	streak_2.self_modulate = dark_streak
+	streak_3.self_modulate = dark_streak
+	streak_4.self_modulate = dark_streak
 	
 func _end_streak():
 	# Play sound
@@ -176,13 +176,14 @@ func _end_streak():
 func _end_game():
 	# Stop accepting input and display popuptext
 	player_ready = false
+	$UI/NoButton.disabled = true
+	$UI/YesButton.disabled = true
 	$PopupDialog.popup()
-	
+
 
 func _on_Timer_timeout():
 	# End game
 	_end_game()
-	# Change scene to score screen
 
 
 func _on_YesButton_pressed():
@@ -196,3 +197,6 @@ func _on_NoButton_pressed():
 
 func _on_RestartButton_pressed():
 	get_tree().reload_current_scene()
+	# Re-enable buttons
+	$UI/NoButton.disabled = false
+	$UI/YesButton.disabled = false
