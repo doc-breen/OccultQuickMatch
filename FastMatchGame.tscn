@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Assets/CorrectSound.wav" type="AudioStream" id=1]
 [ext_resource path="res://Assets/yesbutton.png" type="Texture" id=2]
@@ -9,6 +9,11 @@
 [ext_resource path="res://Assets/nobutton.png" type="Texture" id=7]
 [ext_resource path="res://Assets/CountSound.wav" type="AudioStream" id=8]
 
+[sub_resource type="StyleBoxFlat" id=18]
+bg_color = Color( 0.764706, 0.862745, 0.858824, 0.960784 )
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
 [sub_resource type="DynamicFont" id=1]
 use_filter = true
 font_data = ExtResource( 5 )
@@ -17,6 +22,11 @@ font_data = ExtResource( 5 )
 use_filter = true
 font_data = ExtResource( 5 )
 
+[sub_resource type="StyleBoxFlat" id=19]
+bg_color = Color( 0.764706, 0.862745, 0.858824, 0.960784 )
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
 [sub_resource type="DynamicFont" id=2]
 use_filter = true
 font_data = ExtResource( 5 )
@@ -24,6 +34,39 @@ font_data = ExtResource( 5 )
 [sub_resource type="DynamicFont" id=10]
 use_filter = true
 font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxFlat" id=20]
+bg_color = Color( 0.764706, 0.862745, 0.858824, 0.960784 )
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id=21]
+bg_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id=22]
+bg_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id=23]
+bg_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id=24]
+bg_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [sub_resource type="DynamicFont" id=3]
 use_filter = true
@@ -34,16 +77,26 @@ size = 20
 use_filter = true
 font_data = ExtResource( 5 )
 
+[sub_resource type="StyleBoxFlat" id=25]
+bg_color = Color( 0.203922, 0.45098, 0.443137, 0.901961 )
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+
 [sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0.184314, 0.258824, 0.333333, 0.901961 )
-corner_radius_top_right = 1
-corner_radius_bottom_right = 1
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
 shadow_size = 1
+
+[sub_resource type="StyleBoxFlat" id=26]
+bg_color = Color( 0.203922, 0.45098, 0.443137, 0.901961 )
+corner_radius_top_left = 2
+corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.184314, 0.258824, 0.333333, 0.901961 )
-corner_radius_top_left = 1
-corner_radius_bottom_left = 1
+corner_radius_top_left = 2
+corner_radius_bottom_left = 2
 shadow_size = 1
 
 [sub_resource type="StyleBoxFlat" id=5]
@@ -95,18 +148,6 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="Environment" id=8]
-ambient_light_color = Color( 0, 0.392157, 0.188235, 1 )
-ambient_light_energy = 2.22
-ambient_light_sky_contribution = 0.8
-fog_sun_amount = 0.3
-glow_enabled = true
-glow_intensity = 1.5
-glow_bloom = 0.09
-glow_hdr_threshold = 0.9
-glow_hdr_luminance_cap = 10.0
-glow_hdr_scale = 3.0
-
 [sub_resource type="StyleBoxFlat" id=16]
 bg_color = Color( 0.313726, 0.545098, 0.345098, 0.941176 )
 border_width_left = 1
@@ -134,7 +175,7 @@ script = ExtResource( 6 )
 [node name="Background" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.141176, 0.25098, 0.172549, 1 )
+color = Color( 0.0901961, 0.184314, 0.137255, 1 )
 
 [node name="HUD" type="HBoxContainer" parent="."]
 anchor_left = 1.0
@@ -144,11 +185,11 @@ margin_bottom = 32.0
 rect_min_size = Vector2( 256, 0 )
 alignment = 2
 
-[node name="Time" type="ColorRect" parent="HUD"]
+[node name="Time" type="Panel" parent="HUD"]
 margin_right = 120.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 120, 0 )
-color = Color( 0.764706, 0.862745, 0.858824, 0.960784 )
+custom_styles/panel = SubResource( 18 )
 
 [node name="Fixed" type="Label" parent="HUD/Time"]
 anchor_bottom = 1.0
@@ -171,24 +212,12 @@ text = "time"
 align = 2
 valign = 1
 
-[node name="ColorRect" type="ColorRect" parent="HUD/Time"]
-show_behind_parent = true
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -60.0
-margin_top = -16.0
-margin_right = 61.0
-margin_bottom = 17.0
-color = Color( 0.0470588, 0.0470588, 0.0470588, 0.654902 )
-
-[node name="Score" type="ColorRect" parent="HUD"]
+[node name="Score" type="Panel" parent="HUD"]
 margin_left = 124.0
 margin_right = 244.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 120, 0 )
-color = Color( 0.764706, 0.862745, 0.858824, 0.960784 )
+custom_styles/panel = SubResource( 19 )
 
 [node name="Fixed" type="Label" parent="HUD/Score"]
 anchor_top = 0.5
@@ -215,24 +244,12 @@ text = "points"
 align = 2
 valign = 1
 
-[node name="ColorRect2" type="ColorRect" parent="HUD/Score"]
-show_behind_parent = true
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -60.0
-margin_top = -16.0
-margin_right = 61.0
-margin_bottom = 17.0
-color = Color( 0.0470588, 0.0470588, 0.0470588, 0.654902 )
-
-[node name="Streak" type="ColorRect" parent="HUD"]
+[node name="Streak" type="Panel" parent="HUD"]
 margin_left = 248.0
 margin_right = 360.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 112, 0 )
-color = Color( 0.764706, 0.862745, 0.858824, 0.960784 )
+custom_styles/panel = SubResource( 20 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/Streak"]
 anchor_right = 1.0
@@ -247,33 +264,37 @@ rect_min_size = Vector2( 0, 16 )
 custom_constants/separation = 3
 alignment = 1
 
-[node name="Streak1" type="ColorRect" parent="HUD/Streak/VBoxContainer/Counters"]
+[node name="Streak1" type="Panel" parent="HUD/Streak/VBoxContainer/Counters"]
+self_modulate = Color( 0.196078, 0.196078, 0.196078, 0.870588 )
 margin_left = 4.0
 margin_right = 20.0
 margin_bottom = 19.0
 rect_min_size = Vector2( 16, 16 )
-color = Color( 0.0980392, 0.0980392, 0.0980392, 0.784314 )
+custom_styles/panel = SubResource( 21 )
 
-[node name="Streak2" type="ColorRect" parent="HUD/Streak/VBoxContainer/Counters"]
+[node name="Streak2" type="Panel" parent="HUD/Streak/VBoxContainer/Counters"]
+self_modulate = Color( 0.196078, 0.196078, 0.196078, 0.870588 )
 margin_left = 23.0
 margin_right = 39.0
 margin_bottom = 19.0
 rect_min_size = Vector2( 16, 16 )
-color = Color( 0.0980392, 0.0980392, 0.0980392, 0.784314 )
+custom_styles/panel = SubResource( 22 )
 
-[node name="Streak3" type="ColorRect" parent="HUD/Streak/VBoxContainer/Counters"]
+[node name="Streak3" type="Panel" parent="HUD/Streak/VBoxContainer/Counters"]
+self_modulate = Color( 0.196078, 0.196078, 0.196078, 0.870588 )
 margin_left = 42.0
 margin_right = 58.0
 margin_bottom = 19.0
 rect_min_size = Vector2( 16, 16 )
-color = Color( 0.0980392, 0.0980392, 0.0980392, 0.784314 )
+custom_styles/panel = SubResource( 23 )
 
-[node name="Streak4" type="ColorRect" parent="HUD/Streak/VBoxContainer/Counters"]
+[node name="Streak4" type="Panel" parent="HUD/Streak/VBoxContainer/Counters"]
+self_modulate = Color( 0.196078, 0.196078, 0.196078, 0.870588 )
 margin_left = 61.0
 margin_right = 77.0
 margin_bottom = 19.0
 rect_min_size = Vector2( 16, 16 )
-color = Color( 0.0980392, 0.0980392, 0.0980392, 0.784314 )
+custom_styles/panel = SubResource( 24 )
 
 [node name="ColorRect" type="ColorRect" parent="HUD/Streak/VBoxContainer/Counters"]
 margin_left = 80.0
@@ -293,33 +314,21 @@ text = "x1"
 align = 2
 valign = 1
 
-[node name="ColorRect3" type="ColorRect" parent="HUD/Streak"]
-show_behind_parent = true
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -56.0
-margin_top = -16.0
-margin_right = 57.0
-margin_bottom = 17.0
-color = Color( 0.0470588, 0.0470588, 0.0470588, 0.654902 )
-
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -176.0
-margin_top = -121.0
+margin_top = -160.0
 margin_right = 176.0
-margin_bottom = 106.0
+margin_bottom = 96.0
 alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-margin_top = 9.0
+margin_top = 20.0
 margin_right = 352.0
-margin_bottom = 65.0
+margin_bottom = 76.0
 rect_min_size = Vector2( 0, 56 )
 custom_fonts/font = SubResource( 14 )
 text = "Does the symbol on the card match the previous one?"
@@ -327,17 +336,17 @@ align = 1
 autowrap = true
 
 [node name="ColorRect" type="ColorRect" parent="VBoxContainer"]
-margin_top = 69.0
+margin_top = 80.0
 margin_right = 352.0
-margin_bottom = 77.0
-rect_min_size = Vector2( 0, 8 )
+margin_bottom = 96.0
+rect_min_size = Vector2( 0, 16 )
 color = Color( 1, 1, 1, 0 )
 
 [node name="CardPiles" type="HBoxContainer" parent="VBoxContainer"]
 modulate = Color( 1.5, 1.1, 1.1, 1 )
-margin_top = 81.0
+margin_top = 100.0
 margin_right = 352.0
-margin_bottom = 217.0
+margin_bottom = 236.0
 custom_constants/separation = 20
 alignment = 1
 
@@ -404,6 +413,7 @@ alignment = 1
 margin_right = 64.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 64, 40 )
+custom_styles/hover = SubResource( 25 )
 custom_styles/normal = SubResource( 6 )
 text = "No"
 icon = ExtResource( 7 )
@@ -415,6 +425,7 @@ margin_left = 72.0
 margin_right = 136.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 64, 40 )
+custom_styles/hover = SubResource( 26 )
 custom_styles/normal = SubResource( 7 )
 text = "Yes"
 icon = ExtResource( 2 )
@@ -432,9 +443,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -159.0
-margin_top = -89.0
+margin_top = -96.0
 margin_right = 161.0
-margin_bottom = 86.0
+margin_bottom = 96.0
 custom_styles/panel = SubResource( 5 )
 popup_exclusive = true
 
@@ -483,14 +494,12 @@ custom_styles/normal = SubResource( 12 )
 text = "Restart"
 expand_icon = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 8 )
-
 [node name="CorrectSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
 
 [node name="CountSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
+pitch_scale = 0.9
 
 [node name="WrongSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
@@ -510,6 +519,10 @@ popup_exclusive = true
 [node name="Label" type="Label" parent="Countdown"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = 1.0
+margin_right = -1.0
+margin_bottom = -1.0
 custom_fonts/font = SubResource( 15 )
 text = "3"
 align = 1
