@@ -1,8 +1,6 @@
 # OccultQuickMatch
 My second finished game project, another web game made with Control nodes
 
-All assets other than font made by me.
-
 Sounds made with Chiptone by SFB games: https://sfbgames.itch.io/chiptone
 
 Art made with Pixelorama by Orama Interactive: https://orama-interactive.itch.io/pixelorama
