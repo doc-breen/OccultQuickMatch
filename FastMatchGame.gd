@@ -13,6 +13,7 @@ onready var streak_1 = $HUD/Streak/VBoxContainer/Counters/Streak1
 onready var streak_2 = $HUD/Streak/VBoxContainer/Counters/Streak2
 onready var streak_3 = $HUD/Streak/VBoxContainer/Counters/Streak3
 onready var streak_4 = $HUD/Streak/VBoxContainer/Counters/Streak4
+onready var streak_5 = $HUD/Streak/VBoxContainer/Counters/Streak5
 var light_streak = Color("3ba656")
 var dark_streak = Color("de323232")
 # Remember last card and display new one
@@ -37,7 +38,6 @@ onready var countdown = $Countdown
 onready var count_label = $Countdown/Label
 
 func _ready():
-	#default_pos = card_shown.rect_position
 	rng.randomize()
 	# Initialize random card
 	this_card = rng.randi_range(1,5)
@@ -66,6 +66,7 @@ func _ready():
 	timer.start(45)
 
 func _input(event):
+	# Prevent input spam by checking for echoes
 	if player_ready and !event.is_echo():
 		if event.is_action("ui_left"):
 			_on_NoButton_pressed()
@@ -79,7 +80,7 @@ func _process(_delta):
 	hud_streak.text = "x"+String(mult)
 
 func _show_card(card):
-	
+	# Relate random number selected to an image
 	match card:
 		1:
 			card_shown.texture = card1
@@ -93,7 +94,9 @@ func _show_card(card):
 			card_shown.texture = card5
 
 func _change_card():
+	# Prevent input until animation completes
 	player_ready = false
+	# Store previous card before showing new one
 	last_card = this_card
 	this_card = rng.randi_range(1,5)
 	# Put new card under old card	
@@ -103,7 +106,8 @@ func _change_card():
 	card_stack.rect_position = Vector2(0,0)
 	# Set the new card underneath
 	_show_card(this_card)
-	# Add old card as child of new card
+	# Add old card as child of new card because children
+	# are drawn over their parents by default
 	$VBoxContainer/CardPiles/Card.add_child(card_stack)
 	# tween last card away
 	var tween = create_tween()
@@ -111,21 +115,24 @@ func _change_card():
 	# Flip card
 	card_stack.texture = card0
 	card_stack.self_modulate = Color("142661")
+	# Finish tweening flipped card
+	# Have to create new tween because tweens auto-free
 	tween = create_tween()
 	yield(tween.tween_property(card_stack,"rect_position",-Vector2(104,0),.15),"finished")
 	card_stack.queue_free()
+	# Allow input again
 	player_ready = true
 
 
 func _check_card(ans):
 	# Check if this card matches last card
 	match ans:
-		1:
+		1:	# This choice is when Yes is pressed
 			if this_card == last_card:
 				_up_score()
 			else:
 				_end_streak()
-		0:
+		0:	# This is when No is pressed
 			if this_card != last_card:
 				_up_score()
 			else: _end_streak()
@@ -135,7 +142,7 @@ func _check_card(ans):
 func _up_score():
 	# Increase streak counter
 	streak += 1
-	# Light up a streak counter
+	# Light up a streak counter in hud
 	match streak:
 		1:
 			streak_1.self_modulate = light_streak
@@ -146,21 +153,25 @@ func _up_score():
 		4:
 			streak_4.self_modulate = light_streak
 		5:
+			streak_5.self_modulate = light_streak
+		6:
 			streak = 0
 			_clear_streaks()
-			
+			# Increase score multiplier
 			mult += 1
-			if mult > 10:
-				mult = 10
+			if mult > 20:
+				mult = 20
 	# Play sound and increment score
 	right_sound.play()
-	score += 50*mult
+	score += 66*mult
 
 func _clear_streaks():
+	# Remove streak highlights from hud
 	streak_1.self_modulate = dark_streak
 	streak_2.self_modulate = dark_streak
 	streak_3.self_modulate = dark_streak
 	streak_4.self_modulate = dark_streak
+	streak_5.self_modulate = dark_streak
 	
 func _end_streak():
 	# Play sound
@@ -174,10 +185,11 @@ func _end_streak():
 
 
 func _end_game():
-	# Stop accepting input and display popuptext
+	# Stop accepting input and display popup menu
 	player_ready = false
 	$UI/NoButton.disabled = true
 	$UI/YesButton.disabled = true
+	get_tree().paused = true
 	$PopupDialog.popup()
 
 
@@ -187,10 +199,12 @@ func _on_Timer_timeout():
 
 
 func _on_YesButton_pressed():
+	# Extra check to prevent input spam
 	if player_ready:
 		_check_card(1)
 
 func _on_NoButton_pressed():
+	# Extra check to prevent input spam
 	if player_ready:
 		_check_card(0)
 
@@ -200,3 +214,5 @@ func _on_RestartButton_pressed():
 	# Re-enable buttons
 	$UI/NoButton.disabled = false
 	$UI/YesButton.disabled = false
+	# Unpause tree
+	get_tree().paused = false
