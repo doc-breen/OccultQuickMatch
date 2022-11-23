@@ -15,10 +15,12 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [sub_resource type="DynamicFont" id=1]
+size = 15
 use_filter = true
 font_data = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=9]
+size = 14
 use_filter = true
 font_data = ExtResource( 5 )
 
@@ -28,10 +30,12 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [sub_resource type="DynamicFont" id=2]
+size = 15
 use_filter = true
 font_data = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=10]
+size = 14
 use_filter = true
 font_data = ExtResource( 5 )
 
@@ -42,10 +46,10 @@ corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id=21]
 bg_color = Color( 1, 1, 1, 1 )
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
 
 [sub_resource type="StyleBoxFlat" id=22]
 bg_color = Color( 1, 1, 1, 1 )
@@ -69,6 +73,7 @@ corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
 [sub_resource type="DynamicFont" id=3]
+size = 13
 use_filter = true
 font_data = ExtResource( 5 )
 
@@ -79,24 +84,36 @@ font_data = ExtResource( 5 )
 
 [sub_resource type="StyleBoxFlat" id=25]
 bg_color = Color( 0.203922, 0.45098, 0.443137, 0.901961 )
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
 [sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0.184314, 0.258824, 0.333333, 0.901961 )
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 shadow_size = 1
 
 [sub_resource type="StyleBoxFlat" id=26]
 bg_color = Color( 0.203922, 0.45098, 0.443137, 0.901961 )
-corner_radius_top_left = 2
-corner_radius_bottom_left = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
 [sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0.184314, 0.258824, 0.333333, 0.901961 )
-corner_radius_top_left = 2
-corner_radius_bottom_left = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 shadow_size = 1
 
 [sub_resource type="StyleBoxFlat" id=5]
@@ -175,20 +192,22 @@ script = ExtResource( 6 )
 [node name="Background" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.0901961, 0.184314, 0.137255, 1 )
+color = Color( 0.0392157, 0.133333, 0.0862745, 1 )
 
 [node name="HUD" type="HBoxContainer" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -360.0
+margin_left = -407.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 256, 0 )
-alignment = 2
+custom_constants/separation = 7
+alignment = 1
 
 [node name="Time" type="Panel" parent="HUD"]
-margin_right = 120.0
+margin_left = 4.0
+margin_right = 132.0
 margin_bottom = 32.0
-rect_min_size = Vector2( 120, 0 )
+rect_min_size = Vector2( 128, 0 )
 custom_styles/panel = SubResource( 18 )
 
 [node name="Fixed" type="Label" parent="HUD/Time"]
@@ -204,7 +223,7 @@ valign = 1
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -48.0
+margin_left = -66.0
 rect_min_size = Vector2( 40, 0 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 9 )
@@ -213,10 +232,10 @@ align = 2
 valign = 1
 
 [node name="Score" type="Panel" parent="HUD"]
-margin_left = 124.0
-margin_right = 244.0
+margin_left = 139.0
+margin_right = 267.0
 margin_bottom = 32.0
-rect_min_size = Vector2( 120, 0 )
+rect_min_size = Vector2( 128, 0 )
 custom_styles/panel = SubResource( 19 )
 
 [node name="Fixed" type="Label" parent="HUD/Score"]
@@ -245,10 +264,10 @@ align = 2
 valign = 1
 
 [node name="Streak" type="Panel" parent="HUD"]
-margin_left = 248.0
-margin_right = 360.0
+margin_left = 274.0
+margin_right = 402.0
 margin_bottom = 32.0
-rect_min_size = Vector2( 112, 0 )
+rect_min_size = Vector2( 128, 0 )
 custom_styles/panel = SubResource( 20 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/Streak"]
@@ -257,56 +276,64 @@ anchor_bottom = 1.0
 alignment = 1
 
 [node name="Counters" type="HBoxContainer" parent="HUD/Streak/VBoxContainer"]
-margin_top = 6.0
-margin_right = 112.0
-margin_bottom = 25.0
+margin_top = 7.0
+margin_right = 128.0
+margin_bottom = 24.0
 rect_min_size = Vector2( 0, 16 )
 custom_constants/separation = 3
 alignment = 1
 
 [node name="Streak1" type="Panel" parent="HUD/Streak/VBoxContainer/Counters"]
 self_modulate = Color( 0.196078, 0.196078, 0.196078, 0.870588 )
-margin_left = 4.0
-margin_right = 20.0
-margin_bottom = 19.0
-rect_min_size = Vector2( 16, 16 )
+margin_left = 5.0
+margin_right = 21.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 16, 8 )
 custom_styles/panel = SubResource( 21 )
 
 [node name="Streak2" type="Panel" parent="HUD/Streak/VBoxContainer/Counters"]
 self_modulate = Color( 0.196078, 0.196078, 0.196078, 0.870588 )
-margin_left = 23.0
-margin_right = 39.0
-margin_bottom = 19.0
+margin_left = 24.0
+margin_right = 40.0
+margin_bottom = 17.0
 rect_min_size = Vector2( 16, 16 )
 custom_styles/panel = SubResource( 22 )
 
 [node name="Streak3" type="Panel" parent="HUD/Streak/VBoxContainer/Counters"]
 self_modulate = Color( 0.196078, 0.196078, 0.196078, 0.870588 )
-margin_left = 42.0
-margin_right = 58.0
-margin_bottom = 19.0
+margin_left = 43.0
+margin_right = 59.0
+margin_bottom = 17.0
 rect_min_size = Vector2( 16, 16 )
 custom_styles/panel = SubResource( 23 )
 
 [node name="Streak4" type="Panel" parent="HUD/Streak/VBoxContainer/Counters"]
 self_modulate = Color( 0.196078, 0.196078, 0.196078, 0.870588 )
-margin_left = 61.0
-margin_right = 77.0
-margin_bottom = 19.0
+margin_left = 62.0
+margin_right = 78.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 16, 16 )
+custom_styles/panel = SubResource( 24 )
+
+[node name="Streak5" type="Panel" parent="HUD/Streak/VBoxContainer/Counters"]
+self_modulate = Color( 0.196078, 0.196078, 0.196078, 0.870588 )
+margin_left = 81.0
+margin_right = 97.0
+margin_bottom = 17.0
 rect_min_size = Vector2( 16, 16 )
 custom_styles/panel = SubResource( 24 )
 
 [node name="ColorRect" type="ColorRect" parent="HUD/Streak/VBoxContainer/Counters"]
-margin_left = 80.0
-margin_right = 84.0
-margin_bottom = 19.0
+margin_left = 100.0
+margin_right = 104.0
+margin_bottom = 17.0
 rect_min_size = Vector2( 4, 16 )
 color = Color( 1, 1, 1, 0 )
 
 [node name="Dynamic" type="Label" parent="HUD/Streak/VBoxContainer/Counters"]
-margin_left = 87.0
-margin_right = 107.0
-margin_bottom = 19.0
+margin_left = 107.0
+margin_right = 123.0
+margin_bottom = 17.0
 rect_min_size = Vector2( 0, 16 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 3 )
@@ -320,15 +347,15 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -176.0
-margin_top = -160.0
+margin_top = -143.0
 margin_right = 176.0
-margin_bottom = 96.0
+margin_bottom = 129.0
 alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-margin_top = 20.0
+margin_top = 24.0
 margin_right = 352.0
-margin_bottom = 76.0
+margin_bottom = 80.0
 rect_min_size = Vector2( 0, 56 )
 custom_fonts/font = SubResource( 14 )
 text = "Does the symbol on the card match the previous one?"
@@ -336,17 +363,17 @@ align = 1
 autowrap = true
 
 [node name="ColorRect" type="ColorRect" parent="VBoxContainer"]
-margin_top = 80.0
+margin_top = 84.0
 margin_right = 352.0
-margin_bottom = 96.0
-rect_min_size = Vector2( 0, 16 )
+margin_bottom = 108.0
+rect_min_size = Vector2( 0, 24 )
 color = Color( 1, 1, 1, 0 )
 
 [node name="CardPiles" type="HBoxContainer" parent="VBoxContainer"]
 modulate = Color( 1.5, 1.1, 1.1, 1 )
-margin_top = 100.0
+margin_top = 112.0
 margin_right = 352.0
-margin_bottom = 236.0
+margin_bottom = 248.0
 custom_constants/separation = 20
 alignment = 1
 
@@ -400,9 +427,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -20.0
+margin_left = -68.0
 margin_top = -40.0
-margin_right = 20.0
+margin_right = 68.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 128, 0 )
@@ -438,6 +465,7 @@ wait_time = 45.0
 one_shot = true
 
 [node name="PopupDialog" type="PopupDialog" parent="."]
+pause_mode = 2
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
