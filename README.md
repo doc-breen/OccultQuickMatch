@@ -1,5 +1,6 @@
 # OccultQuickMatch
-My second finished game project, another web game made with Control nodes
+My second finished game project, another web game made with Control nodes.
+
 Also available at https://dankbene.itch.io/occult-quick-match
 
 Sounds made with Chiptone by SFB games: https://sfbgames.itch.io/chiptone
