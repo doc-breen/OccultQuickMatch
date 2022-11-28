@@ -433,7 +433,7 @@ margin_right = 68.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 128, 0 )
-custom_constants/separation = 8
+custom_constants/separation = 32
 alignment = 1
 
 [node name="NoButton" type="Button" parent="UI"]
@@ -448,8 +448,8 @@ align = 0
 expand_icon = true
 
 [node name="YesButton" type="Button" parent="UI"]
-margin_left = 72.0
-margin_right = 136.0
+margin_left = 96.0
+margin_right = 160.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 64, 40 )
 custom_styles/hover = SubResource( 26 )
